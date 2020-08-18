@@ -6,7 +6,9 @@ white  = ( 255, 255, 255)
 green  = ( 115, 166,  87)
 
 # Board/space dimensions
-board			= 720
+total_board_height	= 720
+total_board_width	= 900
+board				= total_board_height
 
 """ 
 Setting board elements' dimensions based on board size
