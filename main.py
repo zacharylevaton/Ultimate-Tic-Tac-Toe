@@ -3,7 +3,7 @@ from make_board import *
 pygame.init()
 
 
-window 	= pygame.display.set_mode((board,board))
+window 	= pygame.display.set_mode((total_board_width, total_board_height))
 pygame.display.set_caption("Ultimate Tic-Tac-Toe")
 
 make_board(window)

@@ -1,4 +1,5 @@
 import pygame
+pygame.font.init()
 
 
 # Colors
@@ -10,6 +11,11 @@ total_board_height	= 720
 total_board_width	= 900
 board				= total_board_height
 
+# Setting initial sidebar information
+current_player 		= "X"
+x_score				= 0
+o_score				= 0
+
 """ 
 Setting board elements' dimensions based on board size
 2 * global_margin + 8 * local_margin + 9 * space = board size
@@ -17,6 +23,8 @@ Setting board elements' dimensions based on board size
 global_margin	= board / 24
 local_margin	= board / 48
 space			= board / 12
+
+def update_sidebar(current_player, x_score, o_score):
 
 
 def make_board(window):
@@ -39,5 +47,6 @@ def make_board(window):
 
 			if column == 9:
 				x = local_margin
+
 
 
