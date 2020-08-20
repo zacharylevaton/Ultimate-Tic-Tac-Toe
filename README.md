@@ -1,6 +1,7 @@
 # ULTIMATE TIC TAC TOE
 
 For my first Python project, I created a game of Ultimate Tic Tac Toe. This game draws upon the basic rules of Tic Tac Toe, but adds complexity to make it more strategy-driven.
+
 Note: To start the game, please run the main.py file. 
 
 ## Running the Game
