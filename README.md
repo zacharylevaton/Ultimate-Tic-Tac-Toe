@@ -4,6 +4,8 @@ For my first Python project, I created a game of Ultimate Tic Tac Toe. This game
 
 Note: To start the game, please run the main.py file. 
 
+![](UTTT_Play.gif)
+
 ## Running the Game
 
 The game only uses libraries that are native to Python 3, so no further installations are needed.
