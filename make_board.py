@@ -4,7 +4,8 @@ pygame.font.init()
 
 # Colors
 black 			= (   0,   0,   0)
-white  			= ( 255, 255, 255)
+white  		= ( 255, 255, 255)
+paper_yellow	= ( 242, 238, 203)
 gray  			= ( 154, 162, 151)
 dark_gray		= ( 123, 130, 121)
 
@@ -40,7 +41,7 @@ def refresh_window(window, current_player, x_score, o_score):
 
 
 def make_board(window):
-	pygame.draw.rect(window, gray, (0,0,board,board))
+	pygame.draw.rect(window, paper_yellow, (0,0,board,board))
 	x = local_margin
 	y = local_margin
 	for row in range(1,10):
@@ -56,12 +57,23 @@ def make_board(window):
 				x += local_margin+ space
 
 			if row in [1, 4, 7] and column in [1, 4, 7]:
-				pygame.draw.rect(window, dark_gray, (x,y,3*space + 2*local_margin,3*space + 2*local_margin))
+				pygame.draw.rect(window, black, (x,y,3*space + 2*local_margin,3*space + 2*local_margin))
 
-			pygame.draw.rect(window, white, (x,y,space,space))
+			pygame.draw.rect(window, paper_yellow, (x,y,space,space))
 
 			if column == 9:
 				x = local_margin
+
+	# Global board's lines.
+	# Left Vertical.
+	pygame.draw.rect(window, black, (3.5 * local_margin + 3 * space, 0, global_margin / 2, total_height))
+	# Right Vertical.
+	pygame.draw.rect(window, black, (5.5 * local_margin + 6 * space + global_margin, 0, global_margin / 2, total_height))
+	# Top Horizontal.
+	pygame.draw.rect(window, black, (0, 3.5 * local_margin + 3 * space, total_height, global_margin / 2))
+	# Bottom Horizontal.
+	pygame.draw.rect(window, black, (0, 5.5 * local_margin + 6 * space + global_margin, total_height, global_margin / 2))
+
 
 	# Creating text for current player title block.
 	current_player_title = title_font.render('Current Player:', True, white) 
