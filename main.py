@@ -3,7 +3,7 @@ Runs functions related to Tic Tac Toe game.
 
 OUTPUT: Ultimate Tic Tac Toe Game!
 """
-from uttt_function import *
+from uttt_functions import *
 from display import display_board
 from tutorial import uttt_tutorial 
 
@@ -74,5 +74,5 @@ def UTTT():
 	    if not replay():
 	        break
 
-if __name__ = "__main__":
+if __name__ == "__main__":
 	UTTT()
