@@ -3,7 +3,7 @@ Runs functions related to Tic Tac Toe game.
 
 OUTPUT: Ultimate Tic Tac Toe Game!
 """
-from run_game import *
+from uttt_function import *
 from display import display_board
 from tutorial import uttt_tutorial 
 
