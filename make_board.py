@@ -35,6 +35,7 @@ local_margin	= board / 48
 space			= board / 12
 
 
+
 def refresh_window(window, current_player, x_score, o_score):
 	make_board(window)
 	update_sidebar(window, current_player, x_score, o_score)
@@ -116,21 +117,7 @@ def update_sidebar(window, current_player, x_score, o_score):
 	window.blit(x_score_content, x_score_content_rect)
 	window.blit(o_score_content, o_score_content_rect)
 
-def button(text, x, y, w, h, color, hover_color, action=None):
-	mouse = pygame.mouse.get_pos()
-	click = pygame.mouse.get_pressed()
-	if (x + w) > mouse[0] > (y + h) and (y + h) > mouse[1] > y:
-		pygame.draw.rect(gameDisplay, hover_color,(x,y,w,h))
 
-	if click[0] == 1 and action != None:
-		action()         
-	else:
-    	pygame.draw.rect(gameDisplay, color,(x,y,w,h))
-
-    smallText = pygame.font.SysFont("comicsansms",20)
-    textSurf, textRect = text_objects(msg, smallText)
-    textRect.center = ( (x+(w/2)), (y+(h/2)) )
-    gameDisplay.blit(textSurf, textRect)
 
 
 
