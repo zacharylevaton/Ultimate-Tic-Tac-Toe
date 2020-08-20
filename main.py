@@ -46,10 +46,10 @@ def UTTT():
 	        # X's Turn
 	        display_board(current_board)
 	        print("\nPlayer", player_turn[0], "is up!")
-	        chosen_spot = choose_spot(chosen_spot, current_board, outcome_decided)
-	        current_board = place_marker(current_board, chosen_spot, "X")
-
+	        chosen_spot 	= choose_spot(chosen_spot, current_board, outcome_decided)
+	        current_board 	= place_marker(current_board, chosen_spot, "X")
 	        outcome_decided = local_outcome_check(chosen_spot, current_board, "X", outcome_decided)
+
 	        if outcome_decided[chosen_spot[0]][1] == "X":
 	            print("Player", player_turn[0], "has won local game", chosen_spot[0], "!\n")
 	        if global_outcome_check(outcome_decided, "X"):
@@ -60,10 +60,10 @@ def UTTT():
 	        # O's Turn
 	        display_board(current_board)
 	        print("\nPlayer", player_turn[1], "is up!")
-	        chosen_spot = choose_spot(chosen_spot, current_board, outcome_decided)
-	        current_board = place_marker(current_board, chosen_spot, "O")
-
+	        chosen_spot 	= choose_spot(chosen_spot, current_board, outcome_decided)
+	        current_board 	= place_marker(current_board, chosen_spot, "O")
 	        outcome_decided = local_outcome_check(chosen_spot, current_board, "O", outcome_decided)
+	        
 	        if outcome_decided[chosen_spot[0]][1] == "O":
 	            print("Player", player_turn[1], "has won local game", chosen_spot[0], "!\n")
 	        if global_outcome_check(outcome_decided, "X"):
