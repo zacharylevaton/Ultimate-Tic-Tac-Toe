@@ -1,34 +1,83 @@
-import pygame, sys
-from make_board import *
-pygame.init()
+"""
+Runs functions related to Tic Tac Toe game.
 
+OUTPUT: Ultimate Tic Tac Toe Game!
+"""
+from uttt_tutorial import *
+from choose_first import *
+from choose_mark import *
+from display_board import *
+from choose_spot import *
+from place_marker import *
+from local_outcome_check import *
+from global_outcome_check import *
+from replay import *
 
-def quit_game():
-	pygame.quit()
-	sys.exit(0)
+def UTTT():
+	# Asking if the player would like a tutorial
+	uttt_tutorial()
 
-def reset_game():
-	# Reset Here
-	pass
-
-def run_game():
-	window 	= pygame.display.set_mode((total_width, total_height))
-	pygame.display.set_caption("Ultimate Tic-Tac-Toe")
-	refresh_window(window, current_player, x_score, o_score)
-
+	# Game Begins
 	while True:
-		for event in pygame.event.get():
-			if event.type == pygame.QUIT:
-				quit_game()
+	    current_board = {
+	        "A": [" ", " ", " ", " ", " ", " ", " ", " ", " "],
+	        "B": [" ", " ", " ", " ", " ", " ", " ", " ", " "],
+	        "C": [" ", " ", " ", " ", " ", " ", " ", " ", " "],
+	        "D": [" ", " ", " ", " ", " ", " ", " ", " ", " "],
+	        "E": [" ", " ", " ", " ", " ", " ", " ", " ", " "],
+	        "F": [" ", " ", " ", " ", " ", " ", " ", " ", " "],
+	        "G": [" ", " ", " ", " ", " ", " ", " ", " ", " "],
+	        "H": [" ", " ", " ", " ", " ", " ", " ", " ", " "],
+	        "I": [" ", " ", " ", " ", " ", " ", " ", " ", " "]
+	    }
+	    outcome_decided = {
+	        "A": [False, " "],
+	        "B": [False, " "],
+	        "C": [False, " "],
+	        "D": [False, " "],
+	        "E": [False, " "],
+	        "F": [False, " "],
+	        "G": [False, " "],
+	        "H": [False, " "],
+	        "I": [False, " "]
+	    }
+	    chosen_spot = "  "
 
-		b_height 	= sidebar_width // 2
-		b_width 	= sidebar_width // 3
-		b_x			= board
-		b_y 		= total_height - sidebar_width // 3
-		button(window, "Reset", b_x, b_y, b_height, b_width, yellow, light_yellow, reset_game)
-		button(window, "Quit", b_x + sidebar_width // 2, b_y, b_height, b_width, red, light_red, quit_game)
+	    print("Let's begin playing!")
+	    first_move = choose_first()
+	    player_turn = choose_mark(first_move)
 
-		pygame.display.update()
+	    while True:
+	        # X's Turn
+	        display_board(current_board)
+	        print("\nPlayer", player_turn[0], "is up!")
+	        chosen_spot = choose_spot(chosen_spot, current_board, outcome_decided)
+	        current_board = place_marker(current_board, chosen_spot, "X")
 
-if __name__ == "__main__":
-	run_game()
+	        outcome_decided = local_outcome_check(chosen_spot, current_board, "X", outcome_decided)
+	        if outcome_decided[chosen_spot[0]][1] == "X":
+	            print("Player", player_turn[0], "has won local game", chosen_spot[0], "!\n")
+	        if global_outcome_check(outcome_decided, "X"):
+	            display_board(current_board)
+	            print("~~~~~Player", player_turn[0], "has won the game!~~~~~\n")
+	            break
+
+	        # O's Turn
+	        display_board(current_board)
+	        print("\nPlayer", player_turn[1], "is up!")
+	        chosen_spot = choose_spot(chosen_spot, current_board, outcome_decided)
+	        current_board = place_marker(current_board, chosen_spot, "O")
+
+	        outcome_decided = local_outcome_check(chosen_spot, current_board, "O", outcome_decided)
+	        if outcome_decided[chosen_spot[0]][1] == "O":
+	            print("Player", player_turn[1], "has won local game", chosen_spot[0], "!\n")
+	        if global_outcome_check(outcome_decided, "X"):
+	            display_board(current_board)
+	            print("~~~~~Player", player_turn[1], "has won the game!~~~~~\n")
+	            break
+
+	    if not replay():
+	        break
+
+if __name__ = "__main__":
+	UTTT()
