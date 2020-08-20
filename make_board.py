@@ -6,8 +6,11 @@ pygame.font.init()
 black 			= (   0,   0,   0)
 white  			= ( 255, 255, 255)
 paper_yellow	= ( 242, 238, 203)
+red 			= ( 207,  20,  43)
+light_red		= ( 181,  20,  43)
+yellow 			= ( 250, 210,   1)
+light_yellow	= ( 225, 210,   1)
 gray  			= ( 154, 162, 151)
-dark_gray		= ( 123, 130, 121)
 
 # Board/space dimensions
 total_height	= 720
@@ -21,8 +24,10 @@ x_score			= 0
 o_score			= 0
 
 # Initializing font-related info
+button_size 	= total_height // 50
 title_size 		= total_height // 30
 content_size 	= title_size * 2
+button_font		= pygame.font.SysFont('arial', button_size)
 title_font 		= pygame.font.SysFont('arial', title_size)
 content_font 	= pygame.font.SysFont('arial', content_size)
 
@@ -33,7 +38,6 @@ Setting board elements' dimensions based on board size
 global_margin	= board / 24
 local_margin	= board / 48
 space			= board / 12
-
 
 
 def refresh_window(window, current_player, x_score, o_score):
@@ -96,21 +100,22 @@ def make_board(window):
 	window.blit(x_score_title, x_score_title_rect)
 	window.blit(o_score_title, o_score_title_rect)
 
+
 def update_sidebar(window, current_player, x_score, o_score):
 	# Updating text content for current player.
-	current_player_content = content_font.render(current_player, True, white) 
-	current_player_content_rect = current_player_content.get_rect()  
-	current_player_content_rect.center = (total_width - (0.5 * sidebar_width), 2 * local_margin + 1.5 * space)
+	current_player_content 				= content_font.render(current_player, True, white) 
+	current_player_content_rect 		= current_player_content.get_rect()  
+	current_player_content_rect.center 	= (total_width - (0.5 * sidebar_width), 2 * local_margin + 1.5 * space)
 
 	# Updating text content for x score.
-	x_score_content		= content_font.render(str(x_score), True, white) 
-	x_score_content_rect = x_score_content.get_rect()
-	x_score_content_rect.center = (total_width - (0.5 * sidebar_width), 4 * local_margin + 1 * global_margin + 4.5 * space)
+	x_score_content						= content_font.render(str(x_score), True, white) 
+	x_score_content_rect 				= x_score_content.get_rect()
+	x_score_content_rect.center 		= (total_width - (0.5 * sidebar_width), 4 * local_margin + 1 * global_margin + 4.5 * space)
 
 	# Updating text content for o score.
-	o_score_content		= content_font.render(str(o_score), True, white) 
-	o_score_content_rect = o_score_content.get_rect()
-	o_score_content_rect.center = (total_width - (0.5 * sidebar_width), 6 * local_margin + 2 * global_margin + 7.5 * space)
+	o_score_content						= content_font.render(str(o_score), True, white) 
+	o_score_content_rect 				= o_score_content.get_rect()
+	o_score_content_rect.center 		= (total_width - (0.5 * sidebar_width), 6 * local_margin + 2 * global_margin + 7.5 * space)
 
 	# Blitting content to screen.
 	window.blit(current_player_content, current_player_content_rect)
@@ -118,7 +123,22 @@ def update_sidebar(window, current_player, x_score, o_score):
 	window.blit(o_score_content, o_score_content_rect)
 
 
+def button(window, text, x, y, w, h, color, hover_color, action=None):
+	mouse = pygame.mouse.get_pos()
+	click = pygame.mouse.get_pressed()
+	
+	if x+w > mouse[0] > x and y+h > mouse[1] > y:
+	    pygame.draw.rect(window, hover_color,(x,y,w,h))
 
+	    if click[0] == 1 and action != None:
+	        action()         
+	else:
+	    pygame.draw.rect(window, color,(x,y,w,h))
+
+	button = button_font.render(text, True, gray) 
+	button_rect = button.get_rect()
+	button_rect.center = ( (x+(w/2)), (y+(h/2)) )
+	window.blit(button, button_rect)
 
 
 
