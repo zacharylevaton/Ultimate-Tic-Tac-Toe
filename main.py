@@ -3,15 +3,10 @@ Runs functions related to Tic Tac Toe game.
 
 OUTPUT: Ultimate Tic Tac Toe Game!
 """
-from uttt_tutorial import *
-from choose_first import *
-from choose_mark import *
-from display_board import *
-from choose_spot import *
-from place_marker import *
-from local_outcome_check import *
-from global_outcome_check import *
-from replay import *
+from run_game import *
+from display import display_board
+from tutorial import uttt_tutorial 
+
 
 def UTTT():
 	# Asking if the player would like a tutorial
